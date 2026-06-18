@@ -100,19 +100,58 @@
   .opt-card-badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;
     background:#e8e8f0;color:#888;margin-top:6px;}
   /* preset notes list */
-  .notes-list{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
-  .note-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;
-    padding:14px 16px;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:12px;}
-  .note-item:hover{border-color:#c4c4cf;}
-  .note-item.on{border-color:var(--brand);background:rgba(106,92,242,.07);}
-  .note-item-icon{font-size:22px;flex:none;}
-  .note-item-body{flex:1;}
+  /* ===== STEP 3 ===== */
+  .s3-label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:20px 0 8px;}
+  .notes-scroll{max-height:198px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
+    padding-right:2px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;}
+  .notes-list{display:flex;flex-direction:column;gap:8px;}
+  .note-item{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;
+    padding:13px 14px;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:12px;}
+  .note-item:active{transform:scale(.98);}
+  .note-item.on{border-color:var(--brand);background:rgba(106,92,242,.06);}
+  .note-cb{width:22px;height:22px;border-radius:7px;border:2px solid #c8c8d8;flex:none;
+    display:flex;align-items:center;justify-content:center;transition:.15s;}
+  .note-item.on .note-cb{background:var(--brand);border-color:var(--brand);}
+  .note-item.on .note-cb::after{content:"✓";color:#fff;font-size:12px;font-weight:800;}
+  .note-item-icon{font-size:22px;flex:none;display:none;}
+  .note-item-body{flex:1;min-width:0;}
   .note-item-body b{display:block;font-size:14px;font-weight:700;}
   .note-item-body span{font-size:12px;color:var(--muted);}
-  .note-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;
-    display:flex;align-items:center;justify-content:center;transition:.15s;font-size:13px;color:#fff;}
-  .note-item.on .note-check{background:var(--brand);border-color:var(--brand);}
-  .note-item.on .note-check::after{content:"✓";}
+  .note-check{display:none;}
+  /* add more */
+  .s3-divider{display:flex;align-items:center;gap:10px;margin:20px 0 12px;color:var(--muted);font-size:12px;}
+  .s3-divider::before,.s3-divider::after{content:"";flex:1;height:1px;background:var(--line);}
+  .s3-upload-btn{display:flex;align-items:center;justify-content:center;gap:8px;
+    border:1.5px dashed #c8c8d8;border-radius:14px;padding:14px;cursor:pointer;transition:.15s;
+    font-size:15px;font-weight:700;color:var(--text);}
+  .s3-upload-btn:active{transform:scale(.98);}
+  .s3-upload-btn:hover{border-color:var(--brand);color:var(--brand);}
+  .s3-up-ico{font-size:18px;font-weight:800;color:var(--brand);}
+  .s3-up-hint{font-size:12px;font-weight:500;color:var(--muted);}
+  /* language list */
+  .lang-list{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+  .lang-item{display:flex;align-items:center;gap:14px;background:var(--surface);
+    border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.15s;}
+  .lang-item:active{transform:scale(.98);}
+  .lang-item.on{border-color:var(--brand);background:rgba(106,92,242,.06);}
+  .lang-flag{font-size:26px;flex:none;}
+  .lang-body{flex:1;}
+  .lang-body b{display:block;font-size:15px;font-weight:700;}
+  .lang-body span{font-size:12px;color:var(--muted);}
+  .lang-cb{width:22px;height:22px;border-radius:50%;border:2px solid #c8c8d8;flex:none;
+    display:flex;align-items:center;justify-content:center;transition:.15s;}
+  .lang-item.on .lang-cb{background:var(--brand);border-color:var(--brand);}
+  .lang-item.on .lang-cb::after{content:"✓";color:#fff;font-size:12px;font-weight:800;}
+  /* level grid (2x2) */
+  .level-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .level-card{background:var(--surface);border:2px solid var(--line);border-radius:18px;
+    padding:22px 14px;cursor:pointer;transition:.15s;display:flex;flex-direction:column;
+    align-items:center;gap:10px;text-align:center;}
+  .level-card:active{transform:scale(.97);}
+  .level-card.on{border-color:var(--brand);background:rgba(106,92,242,.06);}
+  .level-ico{font-size:38px;line-height:1;}
+  .level-lbl{font-size:16px;font-weight:700;display:flex;flex-direction:column;gap:3px;}
+  .level-lbl span{font-size:12px;font-weight:500;color:var(--muted);}
 
   /* materials */
   .fileitem{
@@ -153,30 +192,20 @@
   .cal-cell.muted:hover{background:transparent;}
   .cal-cell.today{box-shadow:inset 0 0 0 1.5px #c2c2cc;}
   .cal-cell.sel{background:var(--brand);color:#fff;font-weight:700;}
-  .ci-exam-card{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;transition:.15s;}
-  .ci-exam-card:hover{border-color:var(--brand);}
-  .ci-exam-row{display:flex;align-items:center;justify-content:space-between;}
-  .ci-exam-days{font-size:36px;font-weight:820;color:var(--brand);line-height:1;}
-  .ci-exam-days small{font-size:14px;font-weight:600;color:var(--muted);margin-left:4px;}
-  .ci-exam-meta{font-size:13px;color:var(--muted);margin-top:4px;}
-  .ci-exam-edit-btn{font-size:12px;color:var(--brand);font-weight:700;background:rgba(106,92,242,.1);border:none;border-radius:20px;padding:5px 12px;cursor:pointer;}
-  /* inline quick-pick chips */
-  .ci-exam-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-  .ci-chip{background:var(--surface-2);border:none;border-radius:20px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;}
-  .ci-chip.on{background:var(--brand);color:#fff;}
-  /* mini cal inside card */
-  .ci-mini-cal{margin-top:14px;}
-  .ci-mini-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-  .ci-mini-cal-head b{font-size:14px;font-weight:700;}
-  .ci-mini-nav{background:none;border:none;font-size:18px;cursor:pointer;padding:2px 8px;color:var(--text);}
-  .ci-mini-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;}
-  .ci-mini-wd{font-size:11px;color:var(--muted);padding:2px 0;}
-  .ci-mini-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:7px;cursor:pointer;}
-  .ci-mini-cell:hover{background:var(--surface-2);}
-  .ci-mini-cell.past{color:#ccc;cursor:default;}
-  .ci-mini-cell.past:hover{background:transparent;}
-  .ci-mini-cell.today{box-shadow:inset 0 0 0 1.5px #aaa;}
-  .ci-mini-cell.sel{background:var(--brand);color:#fff;font-weight:700;border-radius:50%;}
+  .ci-combo{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:18px;}
+  .ci-combo.editing{border-color:var(--brand);box-shadow:0 0 0 3px rgba(106,92,242,.12);}
+  .ci-exam-row{display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid var(--line);}
+  .ci-exam-days{font-size:40px;font-weight:820;color:var(--brand);line-height:1;}
+  .ci-exam-days small{font-size:15px;font-weight:600;color:var(--muted);margin-left:4px;}
+  .ci-exam-meta{font-size:13px;color:var(--muted);margin-top:6px;}
+  .ci-exam-edit-btn{font-size:13px;color:var(--brand);font-weight:700;background:rgba(106,92,242,.1);
+    border:none;border-radius:20px;padding:8px 16px;cursor:pointer;flex:none;transition:.15s;}
+  .ci-exam-edit-btn:active{transform:scale(.95);}
+  .ci-exam-edit-btn.on{background:var(--brand);color:#fff;}
+  .ci-edit-hint{font-size:12.5px;color:var(--brand);font-weight:600;text-align:center;
+    background:rgba(106,92,242,.07);border-radius:10px;padding:8px;margin-bottom:12px;}
+  .ci-cal-inner .ci-cal-grid .ci-day.pickable{cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(106,92,242,.35);}
 
   /* target ring + slider */
   .target{display:flex;flex-direction:column;align-items:center;
@@ -193,6 +222,82 @@
     background:var(--green);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);}
   .slider-lbl{display:flex;justify-content:space-between;width:100%;margin-top:9px;
     font-size:11.5px;color:var(--muted);}
+
+  /* ===== HOME top bar (Duolingo-style) ===== */
+  .home-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;}
+  .home-stats{display:flex;align-items:center;gap:14px;flex:none;}
+  .flame-ico{flex:none;}
+  .hb-subject{display:flex;align-items:center;gap:8px;background:var(--surface);
+    border:1.5px solid var(--line);border-radius:14px;padding:8px 12px;cursor:pointer;transition:.15s;}
+  .hb-subject:active{transform:scale(.97);}
+  .hb-sub-text{display:flex;flex-direction:column;gap:2px;line-height:1.15;}
+  .hb-name{font-size:15px;font-weight:760;}
+  .hb-exam{font-size:12px;font-weight:600;color:var(--brand);}
+  .hb-caret{font-size:11px;color:var(--muted);transition:.2s;}
+  .hb-subject.open .hb-caret{transform:rotate(180deg);}
+  .home-stats{display:flex;align-items:center;gap:12px;}
+  .hb-stat{display:flex;align-items:center;gap:5px;font-size:15px;font-weight:760;}
+  .hb-stat b{font-weight:800;}
+  .hb-checkin{display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+    border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--brand);cursor:pointer;transition:.15s;}
+  .hb-checkin:active{transform:scale(.92);}
+  /* subject dropdown */
+  .subject-menu{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;
+    padding:16px;margin-bottom:18px;animation:smDrop .2s;}
+  @keyframes smDrop{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:none;}}
+  .sm-courses{display:flex;gap:12px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px;}
+  .sm-course .sm-ico, .sm-course span{flex:none;}
+  .sm-course{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex:none;}
+  .sm-course .sm-ico{width:62px;height:62px;border-radius:16px;display:flex;align-items:center;
+    justify-content:center;font-size:30px;background:var(--surface-2);border:2.5px solid transparent;transition:.15s;}
+  .sm-course.on .sm-ico{border-color:var(--brand);}
+  .sm-course.add .sm-ico{border:2px dashed #c8c8d8;color:var(--muted);font-size:26px;}
+  .sm-course span{font-size:12px;font-weight:600;}
+  .sm-course.add span{color:var(--muted);}
+  .sm-progress{background:var(--surface-2);border-radius:14px;padding:13px 14px;margin-bottom:16px;}
+  .sm-prog-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+  .sm-prog-row b{font-size:14px;font-weight:720;}
+  .sm-prog-row span{font-size:13px;color:var(--muted);font-weight:600;}
+  .sm-bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;}
+  .sm-bar i{display:block;height:100%;background:var(--green);border-radius:6px;transition:.4s;}
+  .sm-prog-hint{font-size:12px;color:var(--muted);margin-top:7px;}
+  .sm-label{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px;}
+  .sm-suggest{display:flex;gap:14px;}
+  .sm-sug{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
+  .sm-sug-ico{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;
+    justify-content:center;font-size:26px;color:#fff;position:relative;}
+  .sm-sug span{font-size:12px;font-weight:600;}
+  .sm-sug-new{position:absolute;top:-6px;right:-6px;background:#ff5252;color:#fff;font-size:9px;
+    font-weight:800;padding:2px 5px;border-radius:8px;}
+
+  /* sticky chapter banner */
+  .chapter-sticky{position:sticky;top:0;z-index:6;display:flex;align-items:center;
+    justify-content:space-between;border-radius:20px;padding:20px 20px;cursor:pointer;
+    color:#fff;background:var(--brand);box-shadow:0 6px 20px -6px rgba(0,0,0,.3);transition:background .3s;}
+  .chapter-sticky:active{transform:scale(.99);}
+  .cs-left{flex:1;min-width:0;margin-right:12px;}
+  .cs-left b{font-size:14px;font-weight:700;opacity:.85;display:block;letter-spacing:.04em;margin-bottom:3px;}
+  .cs-left span{font-size:21px;font-weight:820;display:block;line-height:1.25;word-break:break-word;}
+  .cs-exam{background:rgba(255,255,255,.22);border-radius:16px;padding:9px 15px;flex:none;
+    display:flex;align-items:baseline;gap:4px;font-size:14px;font-weight:700;}
+  .cs-exam b{font-size:28px;font-weight:850;line-height:1;}
+  .cs-exam span{font-size:11px;opacity:.85;margin-left:2px;}
+  .cs-right{background:rgba(255,255,255,.2);border-radius:11px;padding:7px 10px;font-size:15px;flex:none;margin-left:8px;}
+  /* floating scroll-to-current button */
+  .scroll-cur-btn{position:absolute;right:16px;bottom:84px;z-index:30;width:52px;height:52px;
+    border-radius:16px;border:none;background:var(--surface);color:var(--brand);
+    box-shadow:0 6px 18px -4px rgba(0,0,0,.3);cursor:pointer;display:flex;align-items:center;
+    justify-content:center;animation:scbPop .2s;}
+  .scroll-cur-btn:active{transform:scale(.92);}
+  @keyframes scbPop{from{opacity:0;transform:scale(.7);}to{opacity:1;transform:none;}}
+
+  /* wrong-questions */
+  .wrong-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;}
+  .wrong-q{font-size:14px;font-weight:680;margin-bottom:8px;line-height:1.4;}
+  .wrong-a{font-size:13px;display:flex;gap:6px;margin-bottom:4px;}
+  .wrong-a.bad{color:#e0564f;}
+  .wrong-a.good{color:#1f9e6a;}
+  .wrong-tag{font-size:11px;color:var(--muted);margin-top:6px;}
 
   /* ===== PLAN: countdown hero ===== */
   .countdown{
@@ -278,7 +383,7 @@
   .ci-bone-wrap{display:flex;align-items:center;gap:14px;}
   .ci-bone-count{font-size:32px;font-weight:800;line-height:1;}
   .ci-bone-label{font-size:12px;opacity:.8;margin-top:2px;}
-  .ci-streak-wrap{text-align:right;}
+  .ci-streak-wrap{display:flex;align-items:center;gap:14px;}
   .ci-streak-num{font-size:32px;font-weight:800;line-height:1;}
   .ci-section-title{font-size:16px;font-weight:750;margin-bottom:12px;}
   .ci-cal{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;}
@@ -296,7 +401,7 @@
   .ci-day.checked{background:var(--brand);color:#fff;font-size:16px;}
   .ci-day.prep{background:rgba(240,133,58,.13);color:#c06010;}
   .ci-day.prep.checked{background:var(--brand);color:#fff;}
-  .ci-day.exam-day{background:#ff4d4f;color:#fff;font-weight:800;border-radius:50%;}
+  .ci-day.exam-day{background:rgba(255,77,79,.14);color:#ff4d4f;font-weight:850;}
   .ci-today-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;
     padding:16px;display:flex;align-items:center;gap:14px;}
   .ci-today-icon{font-size:28px;flex:none;}
@@ -491,6 +596,12 @@
     background:var(--surface);border:1.5px solid var(--line);border-radius:14px;display:none;}
   .rv-explain.show{display:block;animation:pop .25s;}
   .rv-explain b{color:var(--green);}
+  .rv-ai-btn{width:100%;margin-top:12px;padding:13px;border-radius:14px;border:1.5px solid var(--brand);
+    background:rgba(106,92,242,.07);color:var(--brand);font-size:14px;font-weight:700;cursor:pointer;
+    font-family:inherit;transition:.15s;}
+  .rv-ai-btn:active{transform:scale(.98);}
+  .rv-ai-chat{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
+  .rv-ai-chat .chat-bubble{white-space:pre-wrap;}
   .rv-nav{display:flex;width:100%;border:1.5px solid var(--line);border-radius:30px;overflow:hidden;background:var(--surface);}
   .rv-nav button{flex:1;border:none;background:transparent;padding:15px;font-size:20px;color:var(--muted);cursor:pointer;font-family:inherit;}
   .rv-nav button:first-child{border-right:1px solid var(--line);}
@@ -565,11 +676,10 @@
     display:none;align-items:center;justify-content:space-around;z-index:20;padding-bottom:env(safe-area-inset-bottom);}
   .tab-nav.show{display:flex;}
   .tab-btn{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;
-    padding:6px 18px;border-radius:12px;transition:.12s;background:none;border:none;font-family:inherit;}
-  .tab-btn span{font-size:10px;font-weight:700;color:var(--muted);}
-  .tab-btn.active span{color:var(--brand);}
+    padding:6px 22px;border-radius:12px;transition:.12s;background:none;border:none;font-family:inherit;color:var(--muted);}
+  .tab-btn span{font-size:10px;font-weight:700;color:inherit;}
+  .tab-btn.active{color:var(--brand);}
   .tab-btn svg{transition:.12s;}
-  .tab-btn.active svg path,.tab-btn.active svg circle,.tab-btn.active svg rect{fill:var(--brand);}
 
   /* footer / button */
   .footer{position:absolute;left:0;right:0;bottom:0;padding:14px 18px 18px;
@@ -604,7 +714,7 @@
 
     <!-- ===== STEP 1 · 科目 ===== -->
     <section class="screen active" id="sStep1">
-      <div class="ob-head"><h1 class="ob-title">你在考什么？<span>第 1 步 · 选科目</span></h1></div>
+      <div class="ob-head"><div class="ob-back" id="step1Back" data-back="sPlan" style="display:none;">‹</div><h1 class="ob-title">你在考什么？<span>第 1 步 · 选科目</span></h1></div>
       <div class="seclabel">📚 科目 <span class="en">Subject</span></div>
       <input class="input" id="subjectInput" value="考研政治" placeholder="输入你的科目…" />
       <div class="chips" id="subjectChips">
@@ -615,71 +725,68 @@
       </div>
     </section>
 
-    <!-- ===== STEP 2 · 内容来源 ===== -->
-    <section class="screen" id="sStep2">
-      <div class="ob-head"><div class="ob-back" data-back="sStep1">‹</div><h1 class="ob-title">用什么内容学习？<span>第 2 步 · 内容来源</span></h1></div>
-      <div class="opt-cards">
-        <div class="opt-card" id="optMyMaterial" onclick="chooseSource('my')">
-          <div class="opt-card-icon">📁</div>
-          <div class="opt-card-body"><b>我的资料</b><span>上传你自己的 PDF、笔记或课件，AI 基于你的资料生成计划。</span></div>
-        </div>
-        <div class="opt-card disabled" id="optPlatform">
-          <div class="opt-card-icon">🏫</div>
-          <div class="opt-card-body"><b>平台内容</b><span>直接使用平台精选的考研/备考题库和知识点，开箱即用。</span><div class="opt-card-badge">内测中</div></div>
-        </div>
-      </div>
-    </section>
+    <!-- ===== STEP 2 · 资料形式 ===== -->
+    <section class="screen" id="sStep3" style="padding-bottom:100px;">
+      <div class="ob-head"><div class="ob-back" data-back="sStep1">‹</div><h1 class="ob-title">添加你的资料<span>第 2 步 · 选择或上传</span></h1></div>
 
-    <!-- ===== STEP 3 · 资料形式 ===== -->
-    <section class="screen" id="sStep3">
-      <div class="ob-head"><div class="ob-back" data-back="sStep2">‹</div><h1 class="ob-title">选择你的资料形式<span>第 3 步 · 资料形式</span></h1></div>
-      <div class="opt-cards">
-        <div class="opt-card" id="optUpload" onclick="chooseMaterial('upload')">
-          <div class="opt-card-icon">⬆️</div>
-          <div class="opt-card-body"><b>上传资料</b><span>上传 PDF / Word / PPT，AI 会自动解析并生成你的学习计划。</span></div>
-        </div>
-        <div class="opt-card" id="optNotes" onclick="chooseMaterial('notes')">
-          <div class="opt-card-icon">📝</div>
-          <div class="opt-card-body"><b>我的笔记</b><span>从已有笔记中选择，继续之前的学习进度。</span></div>
-        </div>
-      </div>
-      <!-- preset notes shown when user picks "我的笔记" -->
-      <div class="notes-list" id="notesList" style="display:none;">
+      <!-- notes list -->
+      <div class="s3-label">我的笔记</div>
+      <div class="notes-scroll" id="notesList">
         <div class="note-item" onclick="pickNote(this,'马原核心考点精讲')">
-          <div class="note-item-icon">📖</div>
-          <div class="note-item-body"><b>马原核心考点精讲</b><span>上次编辑 · 2 天前 · 32 个知识点</span></div>
-          <div class="note-check"></div>
+          <div class="note-cb"></div>
+          <div class="note-item-body"><b>马原核心考点精讲</b><span>2 天前 · 32 个知识点</span></div>
         </div>
         <div class="note-item" onclick="pickNote(this,'近代史重点梳理')">
-          <div class="note-item-icon">📖</div>
-          <div class="note-item-body"><b>近代史重点梳理</b><span>上次编辑 · 5 天前 · 18 个知识点</span></div>
-          <div class="note-check"></div>
+          <div class="note-cb"></div>
+          <div class="note-item-body"><b>近代史重点梳理</b><span>5 天前 · 18 个知识点</span></div>
         </div>
         <div class="note-item" onclick="pickNote(this,'毛中特重点章节')">
-          <div class="note-item-icon">📖</div>
-          <div class="note-item-body"><b>毛中特重点章节</b><span>上次编辑 · 1 周前 · 24 个知识点</span></div>
-          <div class="note-check"></div>
+          <div class="note-cb"></div>
+          <div class="note-item-body"><b>毛中特重点章节</b><span>1 周前 · 24 个知识点</span></div>
         </div>
         <div class="note-item" onclick="pickNote(this,'思修与法律基础')">
-          <div class="note-item-icon">📖</div>
-          <div class="note-item-body"><b>思修与法律基础</b><span>上次编辑 · 2 周前 · 15 个知识点</span></div>
-          <div class="note-check"></div>
+          <div class="note-cb"></div>
+          <div class="note-item-body"><b>思修与法律基础</b><span>2 周前 · 15 个知识点</span></div>
         </div>
       </div>
+
+      <!-- upload -->
+      <div class="s3-divider"><span>添加更多</span></div>
+      <div class="s3-upload-btn" id="addfile">
+        <span class="s3-up-ico">＋</span> 上传文件
+        <span class="s3-up-hint">PDF / Word / 图片</span>
+      </div>
+      <div id="filelist" style="margin-top:10px;"></div>
+      <input type="file" id="fileInput" multiple hidden />
     </section>
 
-    <!-- ===== UPLOAD SCREEN ===== -->
-    <section class="screen" id="sUpload">
-      <div class="ob-head"><div class="ob-back" data-back="sStep3">‹</div><h1 class="ob-title">上传学习资料<span>上传 PDF / Word / PPT</span></h1></div>
-      <p class="subtitle">支持 PDF / Word / PPT，多个文件一起传。AI 会从这些资料生成你的整套计划。</p>
-      <div style="margin-top:18px;" id="filelist"></div>
-      <div class="addfile" id="addfile">＋ 添加 PDF / 文件</div>
-      <input type="file" id="fileInput" multiple hidden />
+    <!-- ===== STEP 3 · 掌握程度 ===== -->
+    <section class="screen" id="sLevel">
+      <div class="ob-head"><div class="ob-back" data-back="sStep3">‹</div><h1 class="ob-title">你对这些内容的掌握程度？<span>第 3 步 · 学习起点</span></h1></div>
+      <p class="subtitle" style="margin-bottom:18px;">让 AI 知道从哪开始，帮你定制难度。</p>
+      <div class="level-grid" id="levelGrid">
+        <div class="level-card" onclick="pickLevel(this,'new')">
+          <div class="level-ico"><svg viewBox="0 0 40 40" width="40" height="40"><path d="M20 36V17" stroke="#5aa840" stroke-width="3" stroke-linecap="round"/><path d="M20 23c-6 0-10-4-10-9 5 0 10 3 10 9Z" fill="#6cc24a"/><path d="M20 19c5 0 9-3 9-8-4 0-9 2-9 8Z" fill="#8ed666"/></svg></div>
+          <div class="level-lbl">刚开始<span>完全是新手</span></div>
+        </div>
+        <div class="level-card" onclick="pickLevel(this,'some')">
+          <div class="level-ico"><svg viewBox="0 0 40 40" width="40" height="40"><path d="M20 11C15.5 8 9 8 5 10v20c4-2 10.5-2 15 1 4.5-3 11-3 15-1V10c-4-2-10.5-2-15 1Z" fill="#5b8def"/><path d="M20 11v20" stroke="#fff" stroke-width="1.6"/><path d="M8 14h7M8 17h7M25 14h7M25 17h7" stroke="#cdd9fb" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="level-lbl">懂一点<span>有些基础概念</span></div>
+        </div>
+        <div class="level-card" onclick="pickLevel(this,'familiar')">
+          <div class="level-ico"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="16" r="9" fill="#ffd23f"/><rect x="16" y="23" width="8" height="6" rx="2" fill="#cfa622"/><rect x="17" y="29" width="6" height="3" rx="1.5" fill="#9a7a10"/><path d="M20 10a6 6 0 00-3 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".7"/></svg></div>
+          <div class="level-lbl">比较熟悉<span>学过但需巩固</span></div>
+        </div>
+        <div class="level-card" onclick="pickLevel(this,'review')">
+          <div class="level-ico"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="13" fill="#fff" stroke="#e0413f" stroke-width="3.5"/><circle cx="20" cy="20" r="6.5" fill="none" stroke="#e0413f" stroke-width="3.5"/><circle cx="20" cy="20" r="2.2" fill="#e0413f"/></svg></div>
+          <div class="level-lbl">查漏补缺<span>冲刺找薄弱点</span></div>
+        </div>
+      </div>
     </section>
 
     <!-- ===== STEP 4 · 考试时间 ===== -->
     <section class="screen" id="sStep4">
-      <div class="ob-head"><div class="ob-back" data-back="sStep3">‹</div><h1 class="ob-title">考试是什么时候？<span>第 4 步 · 考试时间</span></h1></div>
+      <div class="ob-head"><div class="ob-back" data-back="sLevel">‹</div><h1 class="ob-title">考试是什么时候？<span>第 4 步 · 考试时间</span></h1></div>
       <div class="chips" style="margin:6px 0 13px;">
         <div class="chip" data-add="14">约 2 周后</div>
         <div class="chip" data-add="30">约 1 个月后</div>
@@ -735,13 +842,44 @@
     </section>
 
     <!-- ===== PLAN (duolingo path) ===== -->
-    <section class="screen" id="sPlan" style="padding-bottom:80px;">
-      <div class="countdown">
-        <div class="kick">UNTIL EXAM · 距离考试</div>
-        <div class="big"><span id="cdDays">15</span><small>天</small></div>
-        <div class="date" id="cdDate">6月30日 · 星期二</div>
+    <section class="screen" id="sPlan" style="padding-bottom:130px;">
+      <!-- duolingo-style top bar -->
+      <div class="home-bar">
+        <div class="hb-subject" id="hbSubject" onclick="toggleSubjectMenu()">
+          <span class="hb-name" id="hbName">考研政治</span>
+          <span class="hb-caret" id="hbCaret">▾</span>
+        </div>
+        <div class="home-stats">
+          <div class="hb-stat">
+            <svg class="flame-ico" viewBox="0 0 24 24" width="20" height="20">
+              <path d="M12 2c1 3.5-1.5 5-1.5 7.5 0 1.2.9 2 1.8 2 1.3 0 2-1.1 1.9-2.6 1.7 1.3 2.8 3.4 2.8 5.6 0 3.3-2.7 5.5-5.9 5.5S5 17.8 5 14.5c0-2.6 1.5-4.3 2.9-5.9C9.7 6.7 11.4 5 12 2Z" fill="#ff8a3c"/>
+              <path d="M12 13c.6 1.2-.3 2-.3 3 0 1.4 1 2.4 2.3 2.4 1.6 0 2.6-1.2 2.6-2.8 0-1.3-.7-2.3-1.5-3.1.2 1-.4 1.7-1.1 1.7-.9 0-1.4-.9-2-1.2Z" fill="#ffd233"/>
+            </svg>
+            <b id="hbStreak">0</b>
+          </div>
+          <div class="hb-stat"><span id="hbBoneIco"></span> <b id="hbBones">0</b></div>
+        </div>
       </div>
-      <div id="topicList" style="margin-top:24px;"></div>
+
+      <!-- subject dropdown menu -->
+      <div class="subject-menu" id="subjectMenu" style="display:none;">
+        <div class="sm-courses" id="smCourses"></div>
+        <div class="sm-progress">
+          <div class="sm-prog-row"><b id="smProgName">考研政治</b><span id="smProgTxt">0 / 32 关</span></div>
+          <div class="sm-bar"><i id="smBar"></i></div>
+          <div class="sm-prog-hint" id="smProgHint">继续加油，已完成 0%</div>
+        </div>
+      </div>
+
+      <!-- sticky chapter banner (follows scroll, tap for 错题) -->
+      <div class="chapter-sticky" id="chapterSticky">
+        <div class="cs-left">
+          <b id="csChap">第 1 章</b>
+          <span id="csName">对立统一规律</span>
+        </div>
+        <div class="cs-exam" id="csExam"><b id="csDays">15</b> 天<span>距考试</span></div>
+      </div>
+      <div id="topicList" style="margin-top:14px;"></div>
     </section>
 
     <!-- ===== MODE PICK ===== -->
@@ -763,7 +901,8 @@
     </section>
 
     <!-- ===== CHECK-IN ===== -->
-    <section class="screen" id="sCheckin" style="padding-bottom:80px;">
+    <section class="screen" id="sCheckin" style="padding-bottom:90px;">
+      <div class="ob-head"><h1 class="ob-title">打卡 <span>Check-in</span></h1></div>
       <!-- bone count header -->
       <div class="ci-header">
         <div class="ci-bone-wrap">
@@ -774,26 +913,36 @@
           </div>
         </div>
         <div class="ci-streak-wrap">
-          <div class="ci-streak-num" id="ciStreakNum">0</div>
-          <div class="ci-bone-label">连续打卡</div>
+          <svg class="flame-ico" viewBox="0 0 24 24" width="34" height="34" style="flex:none">
+            <path d="M12 2c1 3.5-1.5 5-1.5 7.5 0 1.2.9 2 1.8 2 1.3 0 2-1.1 1.9-2.6 1.7 1.3 2.8 3.4 2.8 5.6 0 3.3-2.7 5.5-5.9 5.5S5 17.8 5 14.5c0-2.6 1.5-4.3 2.9-5.9C9.7 6.7 11.4 5 12 2Z" fill="#ff8a3c"/>
+            <path d="M12 13c.6 1.2-.3 2-.3 3 0 1.4 1 2.4 2.3 2.4 1.6 0 2.6-1.2 2.6-2.8 0-1.3-.7-2.3-1.5-3.1.2 1-.4 1.7-1.1 1.7-.9 0-1.4-.9-2-1.2Z" fill="#ffd233"/>
+          </svg>
+          <div>
+            <div class="ci-streak-num" id="ciStreakNum">0</div>
+            <div class="ci-bone-label">连续打卡</div>
+          </div>
         </div>
       </div>
 
-      <div class="ci-section-title">打卡记录</div>
-      <div class="ci-cal">
-        <div class="ci-cal-head">
-          <div class="ci-nav" id="ciPrev">‹</div>
-          <b id="ciTitle">2026 年 6 月</b>
-          <div class="ci-nav" id="ciNext">›</div>
+      <div class="ci-section-title">学习日历</div>
+      <div class="ci-combo">
+        <!-- countdown header -->
+        <div id="ciExamCard"></div>
+        <!-- edit hint -->
+        <div id="ciEditHint" class="ci-edit-hint" style="display:none;">👇 点下方未来的某天，设为新考试日</div>
+        <!-- calendar -->
+        <div class="ci-cal-inner">
+          <div class="ci-cal-head">
+            <div class="ci-nav" id="ciPrev">‹</div>
+            <b id="ciTitle">2026 年 6 月</b>
+            <div class="ci-nav" id="ciNext">›</div>
+          </div>
+          <div class="ci-wd-row">
+            <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+          </div>
+          <div class="ci-cal-grid" id="ciCalGrid"></div>
         </div>
-        <div class="ci-wd-row">
-          <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
-        </div>
-        <div class="ci-cal-grid" id="ciCalGrid"></div>
       </div>
-
-      <div class="ci-section-title" style="margin-top:24px;">考试倒计时</div>
-      <div id="ciExamCard" class="ci-exam-card" onclick="ciToggleExamEdit()"></div>
 
       <div class="ci-section-title" style="margin-top:24px;">今日目标</div>
       <div class="ci-today-card" id="ciTodayCard">
@@ -803,6 +952,13 @@
           <span>去主页选一关开始学习吧</span>
         </div>
       </div>
+    </section>
+
+    <!-- ===== WRONG QUESTIONS ===== -->
+    <section class="screen" id="sWrong" style="padding-bottom:90px;">
+      <div class="ob-head"><h1 class="ob-title">错题本 <span>Mistakes</span></h1></div>
+      <p class="subtitle" id="wrongSub" style="margin-bottom:14px;">0 道错题 · 复习巩固薄弱点</p>
+      <div id="wrongList"></div>
     </section>
 
     <!-- ===== DONE ===== -->
@@ -817,15 +973,22 @@
     </section>
 
   </div>
+  <button class="scroll-cur-btn" id="scrollCurBtn" onclick="scrollToCurrent()" style="display:none;">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
   <div class="footer" id="footer"></div>
   <nav class="tab-nav" id="tabNav">
-    <button class="tab-btn active" id="tab-home" onclick="tabGo('sPlan','tab-home')">
-      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 12L12 4l9 8v9a1 1 0 01-1 1h-5v-5h-6v5H4a1 1 0 01-1-1z" fill="#9494a8"/></svg>
+    <button class="tab-btn active" id="tab-home" onclick="go('sPlan')">
+      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 12L12 4l9 8v9a1 1 0 01-1 1h-5v-5h-6v5H4a1 1 0 01-1-1z" fill="currentColor"/></svg>
       <span>主页</span>
     </button>
-    <button class="tab-btn" id="tab-checkin" onclick="tabGo('sCheckin','tab-checkin')">
-      <svg width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3" fill="none" stroke="#9494a8" stroke-width="2"/><path d="M16 2v4M8 2v4M3 9h18" stroke="#9494a8" stroke-width="2" stroke-linecap="round"/><path d="M8 14l2.5 2.5L16 12" stroke="#9494a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <button class="tab-btn" id="tab-checkin" onclick="go('sCheckin')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="3" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 9h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 14l2.5 2.5L16 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>打卡</span>
+    </button>
+    <button class="tab-btn" id="tab-wrong" onclick="go('sWrong')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>错题本</span>
     </button>
   </nav>
   <div class="toast" id="toast"></div>
@@ -838,6 +1001,7 @@
       <button class="sheet-action" id="lessonSheetAction">Continue lesson</button>
     </div>
   </div>
+
 </div>
 
 <script>
@@ -1041,15 +1205,15 @@ const REVIEW_RECALL_COUNT=16;
 /* ===================== STATE ===================== */
 const $=s=>document.querySelector(s);
 const S={
-  files:[{name:"马原核心考点精讲.pdf",size:"4.2 MB",kind:"pdf"},
-         {name:"历年真题汇编.pdf",size:"2.8 MB",kind:"pdf"},
-         {name:"课堂笔记整理.docx",size:"680 KB",kind:"doc"}],
+  files:[],
   subject:"考研政治", target:75, examDate:{y:2026,m:5,d:30},
-  mode:"learn", mastery:0, screen:"sStep1", firstRun:true, source:"my", material:"upload", subsDone:0
+  mode:"learn", mastery:0, screen:"sStep1", firstRun:true, level:"some", material:"upload", subsDone:0,
+  courses:[], active:-1
 };
+const COURSE_ICONS=["📚","🧮","🔤","💻","🧪","📐","🌍","🎨"];
 
 /* ===================== NAV ===================== */
-const STEPPROG={sStep1:20, sStep2:40, sStep3:60, sUpload:70, sStep4:80, sStep5:100};
+const STEPPROG={sStep1:20, sStep3:40, sLevel:60, sStep4:80, sStep5:100};
 function go(id){
   S.screen=id;
   document.querySelectorAll(".screen").forEach(e=>e.classList.toggle("active",e.id===id));
@@ -1058,39 +1222,28 @@ function go(id){
   if(STEPPROG[id]){ tp.classList.add("show"); $("#topprogBar").style.width=STEPPROG[id]+"%"; }
   else tp.classList.remove("show");
   renderFooter(id);
-  // tab nav: show on main screens only
-  const TAB_SCREENS=["sPlan","sCheckin"];
+  // bottom tab nav on main screens
+  const TAB_MAP={sPlan:"tab-home", sCheckin:"tab-checkin", sWrong:"tab-wrong"};
   const nav=$("#tabNav");
-  if(TAB_SCREENS.includes(id)){
+  if(TAB_MAP[id]){
     nav.classList.add("show");
     document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-    const map={"sPlan":"tab-home","sCheckin":"tab-checkin"};
-    const btn=document.getElementById(map[id]);
-    if(btn) btn.classList.add("active");
-  } else {
-    nav.classList.remove("show");
-  }
+    $("#"+TAB_MAP[id]).classList.add("active");
+  } else nav.classList.remove("show");
   document.querySelectorAll(".screen").forEach(e=>e.scrollTop=0);
 }
 
-function tabGo(screen, tabId){
-  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-  document.getElementById(tabId).classList.add("active");
-  go(screen);
-}
-
 /* ===================== FOOTER ===================== */
-const TAB_SCREENS_SET=new Set(["sPlan","sDone"]);
 function renderFooter(id){
   const f=$("#footer"); f.innerHTML=""; f.className="footer";
-  f.style.bottom=TAB_SCREENS_SET.has(id)?"68px":"0";
+  f.style.bottom="0";
   const add=(html,fn,cls="btn")=>{const b=document.createElement("button");b.className=cls;b.innerHTML=html;b.onclick=fn;f.appendChild(b);return b;};
   if(id==="sStep1"){
-    add(`继续 <span class="en">Continue</span> →`, ()=>go("sStep2"));
-  } else if(id==="sStep2"||id==="sStep3"){
+    add(`继续 <span class="en">Continue</span> →`, ()=>go("sStep3"));
+  } else if(id==="sStep3"){
+    add(`继续 <span class="en">Continue</span> →`, ()=>go("sLevel"));
+  } else if(id==="sLevel"){
     f.style.display="none"; return;
-  } else if(id==="sUpload"){
-    add(`继续 <span class="en">Continue</span> →`, ()=>go("sStep4"));
   } else if(id==="sStep4"){
     add(`继续 <span class="en">Continue</span> →`, ()=>go("sStep5"));
   } else if(id==="sStep5"){
@@ -1128,28 +1281,11 @@ function renderFiles(){
 $("#addfile").onclick=()=>$("#fileInput").click();
 $("#fileInput").onchange=e=>{[...e.target.files].forEach(f=>S.files.push({name:f.name,size:fmtSize(f.size),kind:kindOf(f.name)}));renderFiles();};
 
-/* option cards */
-function chooseSource(val){
-  S.source=val;
-  document.querySelectorAll("#sStep2 .opt-card").forEach(c=>c.classList.remove("on"));
-  document.getElementById("optMyMaterial").classList.add("on");
-  go("sStep3");
-}
-function chooseMaterial(val){
-  S.material=val;
-  document.querySelectorAll("#sStep3 .opt-card").forEach(c=>c.classList.remove("on"));
-  document.getElementById(val==="upload"?"optUpload":"optNotes").classList.add("on");
-  if(val==="upload"){
-    $("#notesList").style.display="none";
-    go("sUpload");
-  } else {
-    $("#notesList").style.display="flex";
-    const f=$("#footer"); f.innerHTML=""; f.className="footer"; f.style.display="flex";
-    const b=document.createElement("button"); b.className="btn";
-    b.innerHTML=`继续 <span class="en">Continue</span> →`;
-    b.onclick=()=>go("sStep4");
-    f.appendChild(b);
-  }
+function pickLevel(el, code){
+  S.level=code;
+  document.querySelectorAll("#levelGrid .level-card").forEach(c=>c.classList.remove("on"));
+  el.classList.add("on");
+  setTimeout(()=>go("sStep4"),200);
 }
 function pickNote(el, name){
   el.classList.toggle("on");
@@ -1158,17 +1294,6 @@ function pickNote(el, name){
     if(!S.selectedNotes.includes(name)) S.selectedNotes.push(name);
   } else {
     S.selectedNotes=(S.selectedNotes||[]).filter(n=>n!==name);
-  }
-  const anySelected=document.querySelectorAll("#notesList .note-item.on").length>0;
-  const f=$("#footer"); f.innerHTML=""; f.className="footer";
-  if(anySelected){
-    f.style.display="flex";
-    const b=document.createElement("button"); b.className="btn";
-    b.innerHTML=`继续 <span class="en">Continue</span> →`;
-    b.onclick=()=>go("sStep4");
-    f.appendChild(b);
-  } else {
-    f.style.display="none";
   }
 }
 
@@ -1221,88 +1346,117 @@ function startGen(){
   go("sGen");let i=0;$("#genBar").style.width="0%";
   const tick=()=>{
     $("#genStep").textContent=GS[i];$("#genBar").style.width=Math.round((i+1)/GS.length*100)+"%";i++;
-    if(i<GS.length)setTimeout(tick,640);else setTimeout(()=>{buildPlan();go("sPlan");},650);
+    if(i<GS.length)setTimeout(tick,640);else setTimeout(()=>{commitCourse();buildPlan();go("sPlan");},650);
   };tick();
 }
 
-/* ===================== EXAM DATE CARD (check-in) ===================== */
-let ciExamEditing=false;
-let ciMiniView={y:TODAY.y,m:TODAY.m};
+/* ===================== COURSES ===================== */
+function saveActiveCourse(){
+  if(S.active>=0 && S.courses[S.active]){
+    S.courses[S.active].subsDone=S.subsDone;
+    S.courses[S.active].examDate=S.examDate;
+  }
+}
+function commitCourse(){
+  // a fresh plan was generated -> create & switch to a new course
+  saveActiveCourse();
+  S.subsDone=0;
+  S.courses.push({subject:S.subject, examDate:S.examDate, subsDone:0,
+    icon:COURSE_ICONS[S.courses.length%COURSE_ICONS.length]});
+  S.active=S.courses.length-1;
+  $("#step1Back").style.display="none"; // reset onboarding back arrow
+}
+function switchCourse(i){
+  if(i===S.active){toggleSubjectMenu();return;}
+  saveActiveCourse();
+  S.active=i;
+  const c=S.courses[i];
+  S.subject=c.subject; S.examDate=c.examDate; S.subsDone=c.subsDone;
+  toggleSubjectMenu();
+  buildPlan();
+}
 
+/* ===================== EXAM DATE CARD (check-in) ===================== */
+let ciEditMode=false;
 function ciRenderExamCard(){
   const card=$("#ciExamCard"); if(!card)return;
   const n=S.examDate?Math.max(0,daysBetween(TODAY,S.examDate)):null;
-  let html=`<div class="ci-exam-row">
+  card.innerHTML=`<div class="ci-exam-row">
     <div>
       <div class="ci-exam-days">${n!==null?n:"∞"}<small>天</small></div>
       <div class="ci-exam-meta">${S.examDate?`考试日：${fmtCN(S.examDate)} · ${weekday(S.examDate)}`:"未设定考试日期"}</div>
     </div>
-    <button class="ci-exam-edit-btn" onclick="event.stopPropagation();ciToggleExamEdit()">${ciExamEditing?"收起":"修改"}</button>
+    <button class="ci-exam-edit-btn ${ciEditMode?"on":""}" onclick="ciToggleEdit()">${ciEditMode?"完成":"修改"}</button>
   </div>`;
-  if(ciExamEditing){
-    html+=`<div class="ci-mini-cal">
-      <div class="ci-mini-cal-head">
-        <button class="ci-mini-nav" onclick="event.stopPropagation();ciMiniPrev()">‹</button>
-        <b id="ciMiniTitle"></b>
-        <button class="ci-mini-nav" onclick="event.stopPropagation();ciMiniNext()">›</button>
-      </div>
-      <div class="ci-mini-grid" id="ciMiniWd">
-        ${["日","一","二","三","四","五","六"].map(w=>`<div class="ci-mini-wd">${w}</div>`).join("")}
-      </div>
-      <div class="ci-mini-grid" id="ciMiniGrid"></div>
-    </div>`;
-  }
-  card.innerHTML=html;
-  if(ciExamEditing) ciRenderMiniCal();
+  const hint=$("#ciEditHint"); if(hint) hint.style.display=ciEditMode?"block":"none";
+  const combo=card.closest(".ci-combo"); if(combo) combo.classList.toggle("editing",ciEditMode);
 }
-
-function ciRenderMiniCal(){
-  const {y,m}=ciMiniView;
-  const el=$("#ciMiniTitle"); if(el) el.textContent=`${y} 年 ${m+1} 月`;
-  const grid=$("#ciMiniGrid"); if(!grid)return; grid.innerHTML="";
-  const first=new Date(Date.UTC(y,m,1)).getUTCDay();
-  const days=diM(y,m);
-  for(let i=0;i<first;i++){const d=document.createElement("div");d.className="ci-mini-cell past";grid.appendChild(d);}
-  for(let d=1;d<=days;d++){
-    const cur={y,m,d};
-    const past=dnum(cur)<dnum(TODAY);
-    const isSel=S.examDate&&same(cur,S.examDate);
-    const el=document.createElement("div");
-    el.className="ci-mini-cell"+(past?" past":"")+(same(cur,TODAY)?" today":"")+(isSel?" sel":"");
-    el.textContent=d;
-    if(!past) el.onclick=(e)=>{e.stopPropagation();S.examDate=cur;buildPlan();ciRenderExamCard();renderCheckin();};
-    grid.appendChild(el);
-  }
-}
-
-function ciToggleExamEdit(){
-  ciExamEditing=!ciExamEditing;
-  if(ciExamEditing&&S.examDate) ciMiniView={y:S.examDate.y,m:S.examDate.m};
-  ciRenderExamCard();
-}
-function ciSetExamDays(n){
-  S.examDate=addDays(TODAY,n);
-  ciMiniView={y:S.examDate.y,m:S.examDate.m};
-  buildPlan();
-  ciRenderExamCard();
+function ciToggleEdit(){
+  ciEditMode=!ciEditMode;
   renderCheckin();
 }
-function ciMiniPrev(){ciMiniView.m--;if(ciMiniView.m<0){ciMiniView.m=11;ciMiniView.y--;}ciRenderMiniCal();}
-function ciMiniNext(){ciMiniView.m++;if(ciMiniView.m>11){ciMiniView.m=0;ciMiniView.y++;}ciRenderMiniCal();}
 
 /* ===================== PLAN ===================== */
 function buildPlan(){
-  if(S.examDate){
-    const n=daysBetween(TODAY,S.examDate);
-    $("#cdDays").textContent=n;
-    $("#cdDate").textContent=`${fmtCN(S.examDate)} · ${weekday(S.examDate)}`;
-  } else {
-    $("#cdDays").textContent="∞";$("#cdDate").textContent="未设定考期";
-  }
+  renderHomeBar();
   buildTopics();
 }
 
+function renderHomeBar(){
+  $("#hbName").textContent=S.subject;
+  const csExam=$("#csExam"), csDays=$("#csDays");
+  if(S.examDate){ csDays.textContent=Math.max(0,daysBetween(TODAY,S.examDate)); csExam.style.display=""; }
+  else csExam.style.display="none";
+  $("#hbStreak").textContent=CI.streak;
+  $("#hbBones").textContent=CI.totalBones;
+  const bi=$("#hbBoneIco"); if(bi) bi.innerHTML=TREAT_SVG;
+}
+
+function addCourse(){
+  toggleSubjectMenu();
+  $("#step1Back").style.display="";   // show back-to-home arrow
+  go("sStep1");
+}
+function toggleSubjectMenu(){
+  const menu=$("#subjectMenu"), chip=$("#hbSubject");
+  const open=menu.style.display!=="none";
+  if(open){ menu.style.display="none"; chip.classList.remove("open"); return; }
+  renderSubjectMenu();
+  menu.style.display="block"; chip.classList.add("open");
+}
+
+function renderSubjectMenu(){
+  // all courses + add
+  const courses=$("#smCourses");
+  let html=S.courses.map((c,i)=>`
+    <div class="sm-course ${i===S.active?"on":""}" onclick="switchCourse(${i})">
+      <div class="sm-ico">${c.icon||"📚"}</div><span>${c.subject}</span>
+    </div>`).join("");
+  html+=`<div class="sm-course add" onclick="addCourse()">
+      <div class="sm-ico">＋</div><span>添加</span>
+    </div>`;
+  courses.innerHTML=html;
+  // progress
+  const total=TOPICS.length*4, done=Math.min(total,S.subsDone);
+  const pct=Math.round(done/total*100);
+  $("#smProgName").textContent=S.subject;
+  $("#smProgTxt").textContent=`${done} / ${total} 关`;
+  $("#smBar").style.width=pct+"%";
+  $("#smProgHint").textContent=pct>=100?"全部完成，太棒了！🎉":`继续加油，已完成 ${pct}%`;
+}
+
 /* ===== Duolingo path ===== */
+const ICON_BOOK=`<svg viewBox="0 0 32 32" width="32" height="32"><path d="M16 8C12.5 5.5 7.5 5.5 4.5 7v17.5c3-1.5 8-1.5 11.5 1 3.5-2.5 8.5-2.5 11.5-1V7c-3-1.5-8-1.5-11.5 1Z" fill="#fff"/><path d="M16 8v17.5" stroke="#cbc6f7" stroke-width="1.6"/><path d="M7.5 11h5.5M7.5 14h5.5M7.5 17h4.5M19 11h5.5M19 14h5.5M19 17h4.5" stroke="#d7d3f8" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+const ICON_PENCIL=`<svg viewBox="0 0 32 32" width="30" height="30"><path d="M22 5l5 5-13 13-6 1 1-6L22 5Z" fill="#fff"/><path d="M19 8l5 5" stroke="#cbc6f7" stroke-width="1.6"/><path d="M9 24l-1 4 4-1" fill="#ffe08a"/></svg>`;
+const ICON_TROPHY=`<svg viewBox="0 0 32 32" width="30" height="30"><path d="M10 6h12v5a6 6 0 01-12 0V6Z" fill="#fff"/><path d="M10 7H6v2a4 4 0 004 4M22 7h4v2a4 4 0 01-4 4" fill="none" stroke="#fff" stroke-width="2"/><rect x="14" y="17" width="4" height="5" fill="#fff"/><rect x="10" y="22" width="12" height="3" rx="1.5" fill="#fff"/></svg>`;
+const ICON_LOCK=`<svg viewBox="0 0 32 32" width="26" height="26"><rect x="8" y="14" width="16" height="13" rx="3.5" fill="#8a8aa0"/><path d="M11.5 14v-3a4.5 4.5 0 019 0v3" fill="none" stroke="#8a8aa0" stroke-width="3"/><circle cx="16" cy="20" r="2" fill="#fff"/></svg>`;
+const ICON_STAR=`<svg viewBox="0 0 32 32" width="30" height="30"><path d="M16 3.5l3.7 7.6 8.3 1.2-6 5.9 1.4 8.3L16 24.6 8.6 26.5l1.4-8.3-6-5.9 8.3-1.2L16 3.5Z" fill="#ffd23f" stroke="#eea800" stroke-width="1.3" stroke-linejoin="round"/></svg>`;
+const FLAME_SVG=`<svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-4px"><path d="M12 2c1 3.5-1.5 5-1.5 7.5 0 1.2.9 2 1.8 2 1.3 0 2-1.1 1.9-2.6 1.7 1.3 2.8 3.4 2.8 5.6 0 3.3-2.7 5.5-5.9 5.5S5 17.8 5 14.5c0-2.6 1.5-4.3 2.9-5.9C9.7 6.7 11.4 5 12 2Z" fill="#ff8a3c"/><path d="M12 13c.6 1.2-.3 2-.3 3 0 1.4 1 2.4 2.3 2.4 1.6 0 2.6-1.2 2.6-2.8 0-1.3-.7-2.3-1.5-3.1.2 1-.4 1.7-1.1 1.7-.9 0-1.4-.9-2-1.2Z" fill="#ffd233"/></svg>`;
+/* ai-help icons */
+const AI_SMILE=`<svg viewBox="0 0 24 24" width="19" height="19" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#ffd23f"/><circle cx="9" cy="10.5" r="1.3" fill="#5a4a10"/><circle cx="15" cy="10.5" r="1.3" fill="#5a4a10"/><path d="M8.5 14q3.5 3 7 0" stroke="#5a4a10" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`;
+const AI_SCOPE=`<svg viewBox="0 0 24 24" width="19" height="19" style="vertical-align:-4px"><path d="M3 14l11-4 1.5 4-11 4Z" fill="#6a5cf2"/><path d="M14 10l4-1.5 1.2 3.2-4 1.5Z" fill="#8a7df5"/><path d="M7 18l2 4M11 16l2 4" stroke="#6a5cf2" stroke-width="2" stroke-linecap="round"/></svg>`;
+const AI_CHAT=`<svg viewBox="0 0 24 24" width="19" height="19" style="vertical-align:-4px"><path d="M4 5h16v11H9l-4 4v-4H4Z" fill="#6a5cf2"/><circle cx="9" cy="10.5" r="1.3" fill="#fff"/><circle cx="12" cy="10.5" r="1.3" fill="#fff"/><circle cx="15" cy="10.5" r="1.3" fill="#fff"/></svg>`;
+const SUB_ICONS=[ICON_BOOK,ICON_PENCIL,ICON_BOOK,ICON_TROPHY];
 const SUB_LEVELS=[
   {label:"读懂",icon:"📖",desc:"理解模式",mode:"learn"},
   {label:"初练",icon:"✏️",desc:"刷题模式",mode:"review"},
@@ -1347,11 +1501,7 @@ function buildTopics(){
   });
   const totalH=y+40;
 
-  let html=`<div class="path-section-banner" style="background:${CHAPTER_COLORS[0]};margin-bottom:20px;">
-    <div class="psb-left"><b>学习路径 · ${S.subject}</b><br><span style="font-size:12px;opacity:.8;">${TOPICS.length} 个主题 · 每关 4 小节</span></div>
-    <div class="psb-right">📋</div>
-  </div>
-  <div style="position:relative;height:${totalH}px;">`;
+  let html=`<div style="position:relative;height:${totalH}px;">`;
 
   items.forEach(item=>{
     const color=CHAPTER_COLORS[item.ti%4];
@@ -1367,7 +1517,7 @@ function buildTopics(){
       const avaStyled=avaSvg.replace('class="ava"',`width="68" height="68" style="flex:none;${chLocked?"filter:grayscale(1);opacity:.5":""}"`);
       // avatar sits at chapter header top + CHAP_SLOT/2 offset, right side
       const avaY=item.y+Math.round((CHAP_SLOT-68)/2);
-      html+=`<div style="position:absolute;top:${item.y}px;left:0;right:0;display:flex;align-items:center;justify-content:center;padding:0 16px;">
+      html+=`<div class="chap-header" data-chap="${item.ti}" data-name="${name}" data-color="${color}" style="position:absolute;top:${item.y}px;left:0;right:0;display:flex;align-items:center;justify-content:center;padding:0 16px;">
         <div style="background:${bandColor};color:#fff;border-radius:22px;padding:7px 18px;font-size:13px;font-weight:700;white-space:nowrap;">
           第 ${item.ti+1} 章 · ${name}
         </div>
@@ -1401,14 +1551,14 @@ function buildTopics(){
         </svg>`;
       }
 
-      html+=`<div style="position:absolute;top:${item.y}px;left:${leftPct};">
+      html+=`<div ${isCur?'id="curNode"':''} style="position:absolute;top:${item.y}px;left:${leftPct};">
         <div class="path-node-wrap">
           <div class="pn-wrap" style="${pulse}" onclick="startLevel(${gIdx})">
             <div class="pn-base" style="background:${sideColor};"></div>
             <div class="pn-face" style="background:${faceColor};">
-              ${state==="done"?`<span style="font-size:26px;color:#fff;">⭐</span>`:
-                state==="current"?`<span style="font-size:28px;">${sub.icon}</span>`:
-                `<span style="font-size:22px;color:#8080a0;">🔒</span>`}
+              ${state==="done"?ICON_STAR:
+                state==="current"?SUB_ICONS[si]:
+                ICON_LOCK}
             </div>
           </div>
           <div class="path-node-label">${nodeLabel}</div>
@@ -1419,6 +1569,50 @@ function buildTopics(){
 
   html+=`</div>`;
   el.innerHTML=html;
+  setTimeout(updatePlanScroll,30);
+}
+
+/* ===== sticky chapter banner + scroll-to-current ===== */
+function updatePlanScroll(){
+  const sp=$("#sPlan"); if(!sp||!sp.classList.contains("active"))return;
+  const sticky=$("#chapterSticky"); if(!sticky)return;
+  const sb=sticky.getBoundingClientRect();
+  const headers=[...document.querySelectorAll("#topicList .chap-header")];
+  let active=null;
+  headers.forEach(h=>{ if(h.getBoundingClientRect().top<=sb.bottom+6) active=h; });
+  if(active){
+    $("#csChap").textContent=`第 ${+active.dataset.chap+1} 章`;
+    $("#csName").textContent=active.dataset.name;
+    sticky.style.background=active.dataset.color;
+  }
+  // floating button when current node out of view
+  const cur=$("#curNode"), btn=$("#scrollCurBtn");
+  if(cur){
+    const r=cur.getBoundingClientRect(), spr=sp.getBoundingClientRect();
+    const visible=r.top>=spr.top+50 && r.bottom<=spr.bottom-10;
+    btn.style.display=visible?"none":"flex";
+  } else btn.style.display="none";
+}
+function scrollToCurrent(){
+  const cur=$("#curNode"); if(cur) cur.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+/* ===== 错题本 ===== */
+const WRONG_Q=[
+  {q:"矛盾的同一性是指？", bad:"矛盾双方相互排斥", good:"矛盾双方相互依存、相互贯通", tag:"第 1 章 · 对立统一规律"},
+  {q:"量变与质变的关系是？", bad:"量变就是质变", good:"量变是质变的必要准备，质变是量变的必然结果", tag:"第 2 章 · 质量互变规律"},
+  {q:"实践的基本特征不包括？", bad:"主观随意性", good:"客观物质性、自觉能动性、社会历史性", tag:"第 3 章 · 认识论"},
+];
+function renderWrong(){
+  const list=$("#wrongList");
+  $("#wrongSub").textContent=`${WRONG_Q.length} 道错题 · 复习巩固薄弱点`;
+  list.innerHTML=WRONG_Q.map(w=>`
+    <div class="wrong-item">
+      <div class="wrong-q">${w.q}</div>
+      <div class="wrong-a bad">✗ 你的答案：${w.bad}</div>
+      <div class="wrong-a good">✓ 正确答案：${w.good}</div>
+      <div class="wrong-tag">${w.tag}</div>
+    </div>`).join("");
 }
 
 function startLevel(gIdx){
@@ -1491,7 +1685,7 @@ function rvContinue(){
 }
 function rvAdvance(){RV.i++;if(RV.i>=RV.q.length)finishReview();else renderReview();}
 function renderReview(){
-  rvBar();RV.answered=false;
+  rvBar();RV.answered=false;RV.hadWrong=false;
   const q=RV.q[RV.i], body=$("#sessBody");body.scrollTop=0;
   const isJudge=q.kind==="judge";
   $("#stepBadge").innerHTML=(isJudge?"✅ 判断 ":"🔁 复习 ")+(RV.i+1)+" / "+RV.q.length;
@@ -1517,6 +1711,7 @@ function rvAnswer(oi){
     RV.correct++;SESS.food++;updateStreakPill();petAnim("happy");playCorrectSound();rvLock(oi,false);
   } else {
     SESS.food=Math.max(0,SESS.food-1);updateStreakPill();petAnim("sad");playWrongSound();
+    RV.hadWrong=true;
     el.classList.add("wrong");
     setTimeout(()=>{el.classList.remove("wrong");el.classList.add("miss");},420);
   }
@@ -1535,8 +1730,29 @@ function rvLock(chosen,revealed){
   if(ex && (chosen===q.ans || revealed)){
     ex.innerHTML=revealed?`<b>答案解析 📖</b> ${q.ex}`:`<b>答对了 ✓</b> ${q.ex}`;
     ex.classList.add("show");
+    // if the user got it wrong before finally getting it right, offer an AI deep-dive
+    if(RV.hadWrong) aiExplainButton(ex,q);
   }
   rvContinue();
+}
+
+/* shared "没太懂，讲一下" → chat-style AI explanation */
+function aiExplainButton(afterEl,q){
+  afterEl.insertAdjacentHTML("afterend",
+    `<button class="rv-ai-btn">没太懂，讲一下</button><div class="rv-ai-chat"></div>`);
+  const btn=afterEl.nextElementSibling, chat=btn.nextElementSibling;
+  btn.onclick=()=>{ btn.remove(); aiExplainChat(chat,q); };
+}
+function aiExplainChat(chat,q){
+  chat.insertAdjacentHTML("beforeend",`<div class="chat-msg user"><div class="chat-bubble">这道题没太懂，讲一下</div></div>`);
+  chat.insertAdjacentHTML("beforeend",`<div class="chat-msg bot"><div class="chat-bot-row"><div class="chat-bot-icon">✦</div><div class="chat-bubble" id="aiExTgt"></div></div></div>`);
+  const body=$("#sessBody"); if(body)body.scrollTop=body.scrollHeight;
+  const correct=q.opts?q.opts[q.ans]:"";
+  const text=`先别急，我们一步步看 👇\n\n这道题的关键是「${correct}」为什么对。\n${q.ex}\n\n💡 记忆技巧：抓住核心词去对应概念，下次先排除明显矛盾的选项，再锁定最贴合定义的那个。多练两道就稳啦！`;
+  const target=$("#aiExTgt"); target.removeAttribute("id");
+  let i=0;
+  const tick=()=>{ if(i<text.length){target.textContent+=text[i++];if(body)body.scrollTop=body.scrollHeight;setTimeout(tick,18);} };
+  tick();
 }
 function finishReview(){
   $("#sSession").classList.remove("review");
@@ -1597,7 +1813,7 @@ function lessonBtn(label,fn,disabled,withBubble){
   if(disabled)b.disabled=true;else b.onclick=fn;
   if(withBubble){
     const row=document.createElement("div");row.className="foot-row";
-    const bub=document.createElement("div");bub.className="ai-bubble";bub.textContent="💬";bub.onclick=askAI;
+    const bub=document.createElement("div");bub.className="ai-bubble";bub.innerHTML=`<svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 5h16v11H9l-4 4v-4H4Z" fill="#6a5cf2"/><circle cx="9" cy="10.5" r="1.4" fill="#fff"/><circle cx="12" cy="10.5" r="1.4" fill="#fff"/><circle cx="15" cy="10.5" r="1.4" fill="#fff"/></svg>`;bub.onclick=askAI;
     row.appendChild(b);row.appendChild(bub);f.appendChild(row);
   } else f.appendChild(b);
   return b;
@@ -1680,9 +1896,9 @@ function renderStep(){
   if(step.type==="read"){
     body.innerHTML=`<div class="read-body">${step.html}
       <div class="ai-helpers">
-        <div class="ai-help" data-k="eli5">🙂 用大白话讲</div>
-        <div class="ai-help" data-k="more">🔭 讲深一点</div>
-        <div class="ai-help full" data-k="ask">💬 问个问题</div>
+        <div class="ai-help" data-k="eli5">${AI_SMILE} 用大白话讲</div>
+        <div class="ai-help" data-k="more">${AI_SCOPE} 讲深一点</div>
+        <div class="ai-help full" data-k="ask">${AI_CHAT} 问个问题</div>
       </div>
       <div class="ai-answer" id="aiAnswer"></div></div>`;
     body.querySelectorAll(".ai-help").forEach(h=>h.onclick=()=>h.dataset.k==="ask"?openAIComposer():showAIAnswer(h.dataset.k));
@@ -1699,6 +1915,7 @@ function renderStep(){
       const optsEl=$("#opts");
       optsEl.style.opacity="1";optsEl.style.pointerEvents="auto";
     });
+    let hadWrong=false;
     body.querySelectorAll(".opt").forEach(o=>o.onclick=()=>{
       if(body.querySelector(".opt.lock"))return;
       if(o.classList.contains("miss"))return;
@@ -1714,10 +1931,11 @@ function renderStep(){
         const ex=$("#ex");
         ex.innerHTML="<b>答对了 ✓ </b>"+q.ex;
         ex.classList.add("show");
+        if(hadWrong) aiExplainButton(ex,q);
         lessonBtn(`继续 →`, nextStep);
       } else {
         playWrongSound();
-        SESS.streak=0;
+        SESS.streak=0; hadWrong=true;
         SESS.food=Math.max(0,SESS.food-1); updateStreakPill(); petAnim("sad");
         o.classList.add("wrong");
         setTimeout(()=>{o.classList.remove("wrong");o.classList.add("miss");},420);
@@ -1825,8 +2043,13 @@ function renderCheckin(){
     else if(inPrep) cls+=" prep";
     if(isToday) cls+=" today";
     if(checked) cls+=" checked";
+    // only in edit mode can a future day be picked as the new exam date
+    if(ciEditMode && dnum(cur)>dnum(TODAY)) cls+=" pickable";
     el.className=cls;
-    el.textContent=isExam?"🎯":(checked?"🔥":d);
+    if(checked&&!isExam){el.innerHTML=FLAME_SVG;}else{el.textContent=d;}
+    if(ciEditMode && dnum(cur)>dnum(TODAY)){
+      el.onclick=()=>{S.examDate=cur;ciEditMode=false;buildPlan();renderCheckin();};
+    }
     grid.appendChild(el);
   }
   // today card
@@ -1846,7 +2069,10 @@ $("#ciNext").onclick=()=>{CI.view.m++;if(CI.view.m>11){CI.view.m=0;CI.view.y++;}
 
 // hook into go() to render when navigating to sCheckin
 const _go=go;
-go=function(id){_go(id);if(id==="sCheckin")renderCheckin();};
+go=function(id){_go(id);if(id==="sCheckin")renderCheckin();if(id==="sWrong")renderWrong();if(id!=="sPlan")$("#scrollCurBtn").style.display="none";else setTimeout(updatePlanScroll,30);};
+
+// sticky banner + floating button follow scroll
+$("#sPlan").addEventListener("scroll",updatePlanScroll,{passive:true});
 
 go("sStep1");
 </script>
